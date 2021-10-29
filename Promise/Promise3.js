@@ -12,6 +12,28 @@
 // -> XỬ LÝ CÁO THAO TÁC BẤT DỒNG BỘ
 // Phiên bản js es6
 
+var cnt = 0
+
+function sleep(ms) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, ms)
+    })
+} 
+
+sleep(1000)
+    .then(function() {
+        console.log(1)
+        return sleep(1000)
+    })
+    .then(function() {
+        console.log(2)
+        return sleep(1000)
+    })
+    .then(function() {
+        console.log(3)
+        return sleep(1000)
+    })
+
 var promise = new Promise(
     // Executor
     // Khi gọi new Promise thì Executor function được thực thi trước khi
@@ -22,22 +44,38 @@ var promise = new Promise(
         // Thất bạt reject()
         
         // Fake call API
-        reject('Có lỗi!!!')
+        // reject('Có lỗi!!!')
+
+        resolve()
     }
 );
 
 // How i use Promise
 
+// promise
+//     .then(function() {
 
-promise
-    .then(function() {
-        console.log('Successfully')    
-    })
-    .catch(function() {
-        console.log('Failure!')
-    })
-    .finally(function() {
-        console.log('Done!')
-    })
+//         // Tính chất Promise change
+//         return new Promise(function(resolve) {
+//             setTimeout(function() {
+//                 resolve([1, 2, 3])
+//             }, 3000)
+//         })   
+//     })
+//     .then(function(data) {
+//         console.log(data)
+//         return 2;
+//     })
+//     .then(function(data) {
+//         console.log(data)
+//         return 3;
+//     })
+//     .catch(function() {
+//         console.log('Failure !')
+//     })
+//     .finally(function() {
+//         console.log('Done!')
+//     })
+
 
 
