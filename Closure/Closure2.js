@@ -1,0 +1,37 @@
+function createStorage(key) {
+    const store = JSON.parse(localStorage.getItem(key)) ?? {}
+
+    const save = () => {
+        localStorage.setItem(key, JSON.stringify(store))
+    }
+
+    const storage = {
+        get(key) {
+            return store[key]
+        },
+        set(key, value) {
+            store[key] = value
+            save()
+
+        },
+        remove(key) {
+            delete store[key]
+            save()
+        }
+    }
+
+    return storage
+}
+
+// Profile.js
+
+const profileSetting = createStorage('profile-setting')
+
+profileSetting.set('fullName', 'LTL')
+profileSetting.set('address', 'HN')
+profileSetting.set('age', 18)
+profileSetting.set('sex', 'male')
+
+
+
+
